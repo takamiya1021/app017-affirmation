@@ -6,11 +6,10 @@ import { ListSkeleton } from '@/components/ui/Loading'
 import { Button } from '@/components/ui/Button'
 import { Grid, List, SortAsc, SortDesc } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Affirmation } from '@/types'
+import { Affirmation, SortOption, ViewMode } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export type SortOption = 'latest' | 'oldest' | 'alphabetical' | 'likes' | 'random'
-export type ViewMode = 'grid' | 'list'
+// Types are defined in @/types/index.ts
 
 interface AffirmationListProps {
   affirmations: Affirmation[]

@@ -110,6 +110,7 @@ const AddAffirmationPageContent: React.FC = () => {
         ageGroup: formData.ageGroup as AgeGroup
       },
       tags: formData.tags,
+      language: 'ja' as const,
       createdAt: new Date().toISOString(),
       isUserGenerated: true
     }

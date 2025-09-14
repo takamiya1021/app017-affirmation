@@ -15,9 +15,10 @@ export interface Affirmation {
     scene: SceneCategory
     ageGroup: AgeGroup
   }
+  tags: string[]
   language: Language
   createdAt: string
-  isUserAdded: boolean // ユーザー追加アファメーション
+  isUserGenerated: boolean // ユーザー追加アファメーション
 }
 
 // ユーザー設定関連の型定義
@@ -56,11 +57,13 @@ export interface AffirmationFilters {
   ageGroup?: AgeGroup
   language?: Language
   onlyFavorites?: boolean
+  hasEnglish?: boolean
+  onlyUserGenerated?: boolean
   searchQuery?: string
 }
 
 // UI関連の型定義
-export type SortOption = 'latest' | 'oldest' | 'popular' | 'alphabetical'
+export type SortOption = 'latest' | 'oldest' | 'popular' | 'alphabetical' | 'likes' | 'random'
 export type ViewMode = 'list' | 'grid' | 'card'
 
 // コンテキスト関連の型定義

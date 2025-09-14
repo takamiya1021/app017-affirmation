@@ -24,7 +24,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const SettingsPageContent: React.FC = () => {
   const { settings, updateSettings } = useUser()
-  const { activity, clearAllFavorites, clearAllLikes } = useUserActivity()
+  const { activity } = useUserActivity()
   const [isDark, setIsDark] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
@@ -54,12 +54,16 @@ const SettingsPageContent: React.FC = () => {
 
   // データリセット
   const handleResetData = () => {
-    clearAllFavorites()
-    clearAllLikes()
+    // ローカルストレージからデータを削除
+    localStorage.removeItem('userSettings')
+    localStorage.removeItem('userActivity')
     setShowResetConfirm(false)
 
     // 成功メッセージを表示（簡易実装）
     alert('データをリセットしました')
+
+    // ページをリロードして初期状態に戻す
+    window.location.reload()
   }
 
   // PWAインストール

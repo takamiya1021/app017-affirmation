@@ -16,7 +16,7 @@ export class AffirmationService {
 
     try {
       // JSONデータからアファメーションを読み込み
-      this.affirmations = affirmationsData.affirmations as Affirmation[]
+      this.affirmations = (affirmationsData.affirmations as unknown) as Affirmation[]
 
       // ユーザー追加のアファメーションも統合
       const userActivity = UserActivityStorage.get()
@@ -276,7 +276,7 @@ export class AffirmationService {
         ...affirmationData,
         id: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         createdAt: new Date().toISOString(),
-        isUserAdded: true,
+        isUserGenerated: true,
       }
 
       // メモリ内の配列に追加
@@ -299,7 +299,7 @@ export class AffirmationService {
   static removeUserAffirmation(affirmationId: string): boolean {
     try {
       const affirmation = this.getById(affirmationId)
-      if (!affirmation || !affirmation.isUserAdded) {
+      if (!affirmation || !affirmation.isUserGenerated) {
         console.warn('Cannot remove non-user affirmation:', affirmationId)
         return false
       }

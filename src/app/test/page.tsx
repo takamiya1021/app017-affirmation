@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function TestPage() {
   return (
     <div className="p-8">
@@ -18,12 +20,12 @@ export default function TestPage() {
         </div>
 
         <div className="mt-6">
-          <a
+          <Link
             href="/"
             className="inline-block px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
           >
             メインページに戻る
-          </a>
+          </Link>
         </div>
       </div>
 

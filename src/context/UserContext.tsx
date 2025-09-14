@@ -119,12 +119,12 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   }
 
   // ユーザー追加アファメーション
-  const addUserAffirmation = (affirmationData: Omit<Affirmation, 'id' | 'createdAt' | 'isUserAdded'>) => {
+  const addUserAffirmation = (affirmationData: Omit<Affirmation, 'id' | 'createdAt' | 'isUserGenerated'>) => {
     const newAffirmation: Affirmation = {
       ...affirmationData,
       id: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       createdAt: new Date().toISOString(),
-      isUserAdded: true,
+      isUserGenerated: true,
     }
 
     const updatedUserAffirmations = [...activity.userAffirmations, newAffirmation]

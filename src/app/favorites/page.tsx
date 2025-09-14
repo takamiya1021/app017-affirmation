@@ -3,7 +3,8 @@
 import React, { useMemo, useState } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Navigation } from '@/components/layout/Navigation'
-import { AffirmationList, ViewMode, SortOption } from '@/components/affirmation/AffirmationList'
+import { AffirmationList } from '@/components/affirmation/AffirmationList'
+import { ViewMode, SortOption } from '@/types'
 import { Button } from '@/components/ui/Button'
 import { UserProvider } from '@/context/UserContext'
 import { AffirmationProvider, useAffirmations } from '@/context/AffirmationContext'
@@ -13,7 +14,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const FavoritesPageContent: React.FC = () => {
   const { affirmations } = useAffirmations()
-  const { activity, removeFavorite, clearAllFavorites } = useUserActivity()
+  const { activity, removeFavorite } = useUserActivity()
   const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [sortBy, setSortBy] = useState<SortOption>('latest')
   const [showClearConfirm, setShowClearConfirm] = useState(false)
@@ -52,7 +53,10 @@ const FavoritesPageContent: React.FC = () => {
 
   // 全削除実行
   const confirmClearAll = () => {
-    clearAllFavorites()
+    // 各お気に入りを個別に削除
+    favoriteAffirmations.forEach(affirmation => {
+      removeFavorite(affirmation.id)
+    })
     setShowClearConfirm(false)
   }
 

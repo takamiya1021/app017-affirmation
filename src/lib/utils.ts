@@ -187,7 +187,7 @@ export const objectUtils = {
   /**
    * オブジェクトから指定されたキーのみを抽出
    */
-  pick: <T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> => {
+  pick: <T extends object, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> => {
     const result = {} as Pick<T, K>
     for (const key of keys) {
       if (key in obj) {
@@ -216,7 +216,7 @@ export const objectUtils = {
 
     for (const key in source) {
       if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
-        result[key] = objectUtils.deepMerge(result[key] || {}, source[key])
+        result[key] = objectUtils.deepMerge(result[key] || {} as any, source[key]) as any
       } else {
         result[key] = source[key] as T[Extract<keyof T, string>]
       }

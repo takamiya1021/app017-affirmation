@@ -36,11 +36,12 @@ export default function HomePage() {
           categories: {
             theme: '自信',
             scene: '朝',
-            ageGroup: '全年代'
+            ageGroup: '20代'
           },
           author: 'システム',
           source: 'サンプル',
           tags: ['自信', '可能性', '朝'],
+          language: 'ja' as const,
           createdAt: new Date().toISOString(),
           isUserGenerated: false
         }

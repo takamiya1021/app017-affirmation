@@ -16,6 +16,7 @@ export interface AffirmationCardProps {
   className?: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
   onShare?: (affirmation: Affirmation) => void
+  onClick?: () => void
 }
 
 export const AffirmationCard: React.FC<AffirmationCardProps> = ({
@@ -26,6 +27,7 @@ export const AffirmationCard: React.FC<AffirmationCardProps> = ({
   className,
   size = 'md',
   onShare,
+  onClick,
 }) => {
   const { activity, addFavorite, removeFavorite, toggleLike } = useUserActivity()
   const [showEnglish, setShowEnglish] = useState(false)
@@ -116,12 +118,14 @@ export const AffirmationCard: React.FC<AffirmationCardProps> = ({
         'flex flex-col justify-between',
         'transition-all duration-300',
         currentSize.container,
+        onClick ? 'cursor-pointer' : '',
         className
       )}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       whileHover={{ y: -2 }}
+      onClick={onClick}
     >
       {/* メインテキスト */}
       <div className="flex-1 flex items-center justify-center">
