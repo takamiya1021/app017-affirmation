@@ -143,17 +143,18 @@ export default function HomePage() {
                       variant="primary"
                       size="lg"
                       onClick={getNewAffirmation}
-                      className="flex items-center space-x-2 px-8 py-3 transition-all duration-200 hover:scale-105 active:scale-95"
+                      className="inline-flex items-center gap-2 px-8 py-3 transition-all duration-200 hover:scale-105 active:scale-95 whitespace-nowrap min-w-0"
                       disabled={!affirmations.length}
                     >
                       <motion.div
                         animate={{ rotate: affirmations.length > 0 ? 0 : 0 }}
                         whileHover={{ rotate: 180 }}
                         transition={{ duration: 0.3 }}
+                        className="flex-shrink-0"
                       >
                         <Shuffle className="w-5 h-5" />
                       </motion.div>
-                      <span>新しいメッセージ</span>
+                      <span className="flex-shrink-0">新しいメッセージ</span>
                     </Button>
                   </div>
 
