@@ -59,18 +59,16 @@ export default function HomePage() {
     }
   }
 
-  // シェア機能
+  // Xにシェア（ポスト）する機能
   const handleShare = (affirmation: Affirmation) => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'Daily Affirmation',
-        text: affirmation.text,
-        url: window.location.href
-      })
-    } else {
-      // フォールバック：クリップボードにコピー
-      navigator.clipboard.writeText(`${affirmation.text}\n\n- ${affirmation.author || ''}`)
-    }
+    const text = affirmation.text
+    const author = affirmation.author ? `\n\n— ${affirmation.author}` : ''
+    const hashtags = '\n\n#DailyAffirmation #今日の言葉'
+    const tweetText = encodeURIComponent(text + author + hashtags)
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`
+
+    // 新しいウィンドウでXのポスト画面を開く
+    window.open(tweetUrl, '_blank', 'width=600,height=400')
   }
 
   return (
